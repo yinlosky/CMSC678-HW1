@@ -1,0 +1,12 @@
+package mykmeans.umbc.edu;
+/*
+ * Author: Yin Huang
+ * Date: Feb 5, 2015
+ * This is my implementation of Kmeans algorithm which cluter the input digit files into K
+ * clusters. 
+ * Input: (K, rows, cols)
+ * Output: {S_1, S_2,...S_k}
+ */
+public class Kmeans {
+
+}

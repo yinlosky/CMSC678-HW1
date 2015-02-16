@@ -1,0 +1,21 @@
+package mykmeans.umbc.edu;
+
+import java.util.ArrayList;
+
+/*
+ * This class is the implementation of the data object for our analysis
+ * Each data object is a row vector with the size of Dimension and a cluster label
+ * Author: Yin Huang
+ * Date: Feb,5 2015
+ */
+public class Dataobject {
+	static int Dimension = 28*28;
+	int label;
+	ArrayList<Integer> arr;
+	public Dataobject(){
+		this.arr = new ArrayList<Integer>(Dimension);
+		this.label = -1;
+	}
+	
+	
+}

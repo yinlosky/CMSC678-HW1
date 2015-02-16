@@ -1,0 +1,129 @@
+package mykmeans.umbc.edu;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Random;
+import java.util.Set;
+import java.util.StringTokenizer;
+
+
+/*
+ * Author: Yin Huang
+ * Date: Feb 5, 2015
+ * This is my implementation of Kmeans algorithm which cluter the input digit files into K
+ * clusters. 
+ * Input: 1. K, k clusters to be found for the input file
+ * 		  2. Input file path
+ * 		  
+ * Output: {S_1, S_2,...S_k}
+ */
+public class Kmeans {
+	private static final int MAXITERATION = 10; //This is the maximum number of iterations in case the algorithm doesn't converge
+	private int k;        // Num of clusters
+	private ArrayList<Dataobject> vectors = new ArrayList<Dataobject>(); // vectors in an arraylist.
+	private static final String DELIMITER = " ";
+    private ArrayList<Dataobject> centers = new ArrayList<Dataobject>()	; // the initial k centers 
+	private Set<Integer> thisSet;
+	private double minimum = Double.MAX_VALUE;
+	/*
+	 * This function will read input file and store them into vectors
+	 * Assuming that each line in the input file corresponds to a vector
+	 * 
+	 */
+	private void ReadInput(String inputFilePath){
+		int index = 0;
+		try (BufferedReader br = new BufferedReader(new FileReader(inputFilePath)))
+		{
+ 
+			String sCurrentLine;
+		
+			while ((sCurrentLine = br.readLine()) != null) {
+				//System.out.println(sCurrentLine);
+				Dataobject myVector = new Dataobject();
+				myVector.id = index;
+				index++;
+				StringTokenizer token = new StringTokenizer(sCurrentLine,DELIMITER);
+				while(token.hasMoreTokens())
+				{
+					final int number = Integer.parseInt(token.nextToken());
+					myVector.arr.add(number);
+				}
+				vectors.add(myVector);
+			}
+ 
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		
+	}
+	/*
+	 * initializeCenter: initializes numOfCenters centers for the data
+	 * Input: K the number of clusters
+	 * Output: will update the centers vector
+	 */
+	
+	private void initializeCenter(int numOfCenters){
+		if(numOfCenters <= 0) return;
+	    Random randomGenerator = new Random();
+	    thisSet = new HashSet<Integer>();
+	    int idx = thisSet.size();
+	    int dataSize = vectors.size();
+	    while(thisSet.size()<numOfCenters){
+	      int randomInt = randomGenerator.nextInt(dataSize);
+	      if(!thisSet.contains(randomInt)) {
+	    	  Dataobject oneCenter = vectors.get(randomInt);
+	    	  oneCenter.label = idx+1;
+	    	  thisSet.add(randomInt);
+	    	  centers.add(oneCenter);
+	      }
+	    }
+	    System.out.println(thisSet.toString());
+	}
+	
+	/*
+	 * Help function to calculate the Euclidean distance
+	 * Input: Two data objects
+	 */
+	
+	private double myDistance(Dataobject A, Dataobject B){
+		double temp = 0;
+		int i =0;
+		while(i<Dataobject.Dimension){
+			temp += Math.pow(A.arr.get(i) - B.arr.get(i), 2);
+			i++;
+		}
+		return Math.sqrt(temp);
+	}
+	/*
+	 * Assign data points to their closet center
+	 * Input: the data vectors and the center vectors
+	 * Output: the sum of minimum distance for each data vector to its center vector, this sum will be used to determine the termination of our loop.
+	 */
+	
+	private double assign(ArrayList<Dataobject> datavectors, ArrayList<Dataobject> centervectors){
+		double 
+		
+		return 0;
+	}
+	
+	public static void main(String[] args){
+		String path = "/home/yhuang9/Documents/CMSC 678/Homework 1/MNIST/mnist_data.txt";
+		Kmeans km = new Kmeans();
+		km.ReadInput(path);
+		Iterator<Dataobject> it = km.vectors.iterator();
+		/*
+		while(it.hasNext()){
+			System.out.println(it.next().toString());
+		}
+		*/
+		km.initializeCenter(10);
+		Iterator<Dataobject> centerit = km.centers.iterator();
+		while(centerit.hasNext())
+			System.out.println(centerit.next().toString());
+				
+	}
+}
