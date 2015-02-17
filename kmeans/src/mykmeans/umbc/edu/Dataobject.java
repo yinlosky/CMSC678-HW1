@@ -20,7 +20,11 @@ public class Dataobject {
 		this.label = -1;
 		id = 0;
 	}
-	
+	public Dataobject(int myid, int mylabel){
+		this.id = myid;
+		this.arr = new ArrayList<Integer>(Dimension);
+		this.label = mylabel;
+	}
 	
 	public String toString(){
 		StringBuffer myString =new StringBuffer();

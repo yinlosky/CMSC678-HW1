@@ -13,8 +13,9 @@ public class Cluster {
 		sb.append("Cluster ID: "+ center.label + " Includes the following data vectors: \n");
 		for(int i=0;i<datavector.size();i++)
 		{
-			sb.append(datavector.get(i).id +"\n");
+			sb.append(datavector.get(i).id +", ");
 		}
+		sb.append("\n");
 		return sb.toString();
 	}
 	
