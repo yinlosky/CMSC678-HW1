@@ -1,0 +1,24 @@
+package mykmeans.umbc.edu;
+
+import java.util.ArrayList;
+
+/*
+ * This cluster class will contain a center and the data points that belong to it.
+ */
+public class Cluster {
+	Dataobject center;
+	ArrayList<Dataobject> datavector;
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append("Cluster ID: "+center.label+ " Includes the following data vectors: \n");
+		for(int i=0;i<datavector.size();i++)
+		{
+			sb.append(datavector.get(i).id +"\n");
+		}
+		return sb.toString();
+	}
+	public Cluster(){
+		 center= new Dataobject();
+	    datavector = new ArrayList<Dataobject>();
+	}
+}

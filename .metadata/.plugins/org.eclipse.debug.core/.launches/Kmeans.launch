@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/kmeans/src/mykmeans/umbc/edu/Kmeans.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.debug.ui.ATTR_CAPTURE_IN_FILE" value="/home/yhuang9/Documents/CMSC 678/Homework 1/MNIST/Fixed.out"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="mykmeans.umbc.edu.Kmeans"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="kmeans"/>
+</launchConfiguration>

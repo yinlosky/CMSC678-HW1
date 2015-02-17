@@ -1,0 +1,88 @@
+package mykmeans.umbc.edu;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Random;
+import java.util.Set;
+import java.util.StringTokenizer;
+
+/*
+ * Author: Yin Huang
+ * Date: Feb 5, 2015
+ * This is my implementation of Kmeans algorithm which cluter the input digit files into K
+ * clusters. 
+ * Input: 1. K, k clusters to be found for the input file
+ * 		  2. Input file path
+ * 		  
+ * Output: {S_1, S_2,...S_k}
+ */
+public class Kmeans {
+	private static final int maxIteration = 10; //This is the maximum number of iterations in case the algorithm doesn't converge
+	private int k;        // Num of clusters
+	private ArrayList<Dataobject> vectors = new ArrayList<Dataobject>(); // vectors in an arraylist.
+	private static final String DELIMITER = " ";
+    private ArrayList<Dataobject> centers;
+	private Set<Integer> thisSet;
+	/*
+	 * This function will read input file and store them into vectors
+	 * Assuming that each line in the input file corresponds to a vector
+	 * 
+	 */
+	public void ReadInput(String inputFilePath){
+		int index = 0;
+		try (BufferedReader br = new BufferedReader(new FileReader(inputFilePath)))
+		{
+ 
+			String sCurrentLine;
+		
+			while ((sCurrentLine = br.readLine()) != null) {
+				System.out.println(sCurrentLine);
+				Dataobject myVector = new Dataobject();
+				myVector.id = index;
+				index++;
+				StringTokenizer token = new StringTokenizer(sCurrentLine,DELIMITER);
+				while(token.hasMoreTokens())
+				{
+					final int number = Integer.parseInt(token.nextToken());
+					myVector.arr.add(number);
+				}
+				vectors.add(myVector);
+			}
+ 
+		} catch (IOException e) {
+			e.printStackTrace();
+		} 
+		
+	}
+	/*
+	 * initializeCenter: initializes numOfCenters centers for the data
+	 */
+	public void initializeCenter(int numOfCenters){
+		if(numOfCenters <= 0) return;
+	    Random randomGenerator = new Random();
+	    thisSet = new HashSet();
+	    int idx = thisSet.size();
+	    int dataSize = vectors.size();
+	    while(thisSet.size()<numOfCenters){
+	      int randomInt = randomGenerator.nextInt(dataSize);
+	      if(!thisSet.contains(randomInt)) thisSet.add(randomInt);
+	    }
+	    System.out.println(thisSet.toString());
+	}
+	
+	
+	public static void main(String[] args){
+		String path = "/home/yhuang9/Documents/CMSC 678/Homework 1/MNIST/mnist_data.txt";
+		Kmeans km = new Kmeans();
+		km.ReadInput(path);
+		Iterator<Dataobject> it = km.vectors.iterator();
+		while(it.hasNext()){
+			System.out.println(it.next().toString());
+		}
+				
+	}
+}
